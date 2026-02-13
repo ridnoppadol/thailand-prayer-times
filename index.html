@@ -185,7 +185,7 @@
       color: #000;
     }
 
-    .current-time small{
+    .current-time small {
       font-size: 12px;
       color: var(--sub);
     }
@@ -300,7 +300,11 @@
       <button class="btn-secondary" onclick="toggleLang()" id="langBtn">🇬🇧 English</button>
     </div>
 
-    <div id="currentTime" class="current-time"></div>
+    <div id="currentTime" class="current-time">
+      <small id="timeLabel"></small>
+      <div id="timeValue"></div>
+    </div>
+
 
     <div class="glass">
       <div id="prayerTimes"></div>
@@ -756,8 +760,11 @@
         { hour: "2-digit", minute: "2-digit", second: "2-digit" }
       );
 
-      document.getElementById("currentTime").innerText =
-        (currentLang === "th" ? "<small>เวลาปัจจุบัน</small><br>" : "<small>Current Time</small><br>") + timeStr;
+      document.getElementById("timeLabel").innerText =
+        currentLang === "th" ? "เวลาปัจจุบัน" : "Current Time";
+
+      document.getElementById("timeValue").innerText = timeStr;
+
     }
 
     function updateTodayDate() {
@@ -870,6 +877,7 @@
           currentLat = d.data.meta.latitude;
           currentLng = d.data.meta.longitude;
           displayData(d.data);
+          loadMonthly(currentLat, currentLng);
         });
     }
 
