@@ -466,7 +466,7 @@
     lang: "th",
     lat: 13.7563,
     lng: 100.5018,
-    manualLocation: false,
+    // manualLocation: false,
     defaultCity: "Bangkok",
     monthlyLoaded: false
   };
@@ -815,14 +815,14 @@
   ================================ */
 
   function detectLocation() {
-    if (state.manualLocation) return;
+    // if (state.manualLocation) return;
 
     navigator.geolocation.getCurrentPosition(
       async pos => {
         state.lat = pos.coords.latitude;
         state.lng = pos.coords.longitude;
 
-        state.manualLocation = false;
+        // state.manualLocation = false;
 
         showSkeletonToday();
         showSkeletonMonthly();
@@ -892,7 +892,7 @@
  select.addEventListener("change", function () {
   const { lat, lng } = getLatLngFromProvince(this.value);
 
-  state.manualLocation = true;
+  // state.manualLocation = true;
   state.lat = lat;      // update lat
   state.lng = lng;      // update lng
 
