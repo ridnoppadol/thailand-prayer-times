@@ -271,13 +271,13 @@
     }
 
     .fade-update {
-      animation: smoothUpdate 0.5s ease;
+      animation: smoothUpdate 0.9s ease;
     }
 
     @keyframes smoothUpdate {
       0% {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(10px);
       }
       100% {
         opacity: 1;
@@ -286,7 +286,7 @@
     }
 
     .time-updated {
-      animation: glow 0.8s ease;
+      animation: glow 0.9s ease;
     }
 
     @keyframes glow {
@@ -762,7 +762,6 @@
         o.textContent = currentLang === "th" ? p.th : p.en;
         select.appendChild(o);
       });
-      animatePrayerSection();
     }
 
     function updateCurrentTime() {
@@ -825,6 +824,7 @@
         currentLang === "th" ? "แสดงเวลาทั้งเดือน" : "Show Monthly Prayer Times";
 
       loadProvinces();
+      animatePrayerSection();
       updateTodayDate();
       loadToday(currentLat, currentLng);
     }
@@ -956,6 +956,7 @@
     }
 
     loadProvinces();
+    animatePrayerSection();
     updateTodayDate();
     loadToday(currentLat, currentLng);
     if (navigator.geolocation) {
