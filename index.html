@@ -880,10 +880,7 @@
           currentLat = d.data.meta.latitude;
           currentLng = d.data.meta.longitude;
           displayData(d.data);
-          const monthlyDiv = document.getElementById("monthly");
-          if (monthlyDiv.style.display === "block") {
-            loadMonthly(currentLat, currentLng);
-          }
+          loadMonthly(currentLat, currentLng);
         });
     }
 
@@ -894,6 +891,7 @@
     }
 
     function loadMonthly(lat, lng) {
+      console.log("LOAD MONTHLY:", lat, lng);
       const now = new Date();
       const month = now.getMonth() + 1;
       const year = now.getFullYear();
