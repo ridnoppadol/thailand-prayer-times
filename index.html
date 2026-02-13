@@ -466,7 +466,8 @@
     lang: "th",
     lat: 13.7563,
     lng: 100.5018,
-    manualLocation: false
+    manualLocation: false,
+    defaultCity: "Bangkok"
   };
 
   const prayerNames = {
@@ -635,15 +636,22 @@
   function detectLocation() {
     if (state.manualLocation) return;
 
-    navigator.geolocation.getCurrentPosition(async pos=>{
-      state.lat = pos.coords.latitude;
-      state.lng = pos.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+      async pos => {
+        state.lat = pos.coords.latitude;
+        state.lng = pos.coords.longitude;
 
-      showSkeletonToday();
-      showSkeletonMonthly();
+        state.manualLocation = false;
 
-      loadAll();
-    });
+        showSkeletonToday();
+        showSkeletonMonthly();
+        loadAll();
+      },
+      err => {
+        console.log("Location denied or failed");
+        // ไม่ต้องทำอะไร ปล่อย Bangkok ต่อไป
+      }
+    );
   }
 
 
@@ -677,8 +685,20 @@
     INIT
   ================================ */
 
-  loadAll();
-  if (navigator.geolocation) detectLocation();
+  function init() {
+    // ตั้งค่า select เป็น Bangkok เสมอ
+    select.value = state.defaultCity;
+
+    // โหลด Bangkok ก่อน
+    loadAll();
+
+    // แล้วค่อยพยายาม detect
+    if (navigator.geolocation) {
+      detectLocation();
+    }
+  }
+
+  init();
 </script>
 
 
