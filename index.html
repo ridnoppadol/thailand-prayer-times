@@ -684,7 +684,7 @@
   function loadProvinces() {
     select.innerHTML = "";
 
-    provinces.forEach(p => {
+    provinceCoordinates.forEach(p => {
       const option = document.createElement("option");
       option.value = p.en;
       option.textContent = state.lang === "th" ? p.th : p.en;
