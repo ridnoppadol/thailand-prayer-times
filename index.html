@@ -960,6 +960,7 @@ console.log("CURRENT:", currentLat, currentLng);
     select.addEventListener("change", function () {
       const city = this.value;
       fetchByCity(city);
+      loadMonthly(currentLat, currentLng);
     });
     updateTodayDate();
     loadToday(currentLat, currentLng);
