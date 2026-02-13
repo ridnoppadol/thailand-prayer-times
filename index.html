@@ -886,10 +886,15 @@ console.log("CURRENT:", currentLat, currentLng);
     }
 
     function loadToday(lat, lng) {
+      console.trace("LOAD TODAY:", lat, lng);
       fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lng}&method=3`)
         .then(r => r.json())
-        .then(d => displayData(d.data));
-      loadMonthly(currentLat, currentLng);
+        .then(d => {
+          currentLat = d.data.meta.latitude;
+          currentLng = d.data.meta.longitude;
+          displayData(d.data);
+          loadMonthly(currentLat, currentLng);
+        });
     }
 
     function loadMonthly(lat, lng) {
